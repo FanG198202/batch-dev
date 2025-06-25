@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     Start([開始])
     Desc[顯示說明、步驟與權限需求]
@@ -30,3 +31,4 @@ flowchart TD
     CheckPs1 -- 無ps1檔 --> ErrNoPs1
     CheckPs1 -- 有ps1檔 --> MakeCert
     MakeCert --> ImportRoot --> ImportPublisher --> SignFiles --> CheckSign --> Done
+```
