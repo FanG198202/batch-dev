@@ -15,6 +15,7 @@ flowchart TD
     
     ParamCheck{檢查是否有指定目錄參數}
     SetDir[設定PS1目錄路徑]
+    SetCurDir[設定目前路徑]
     CheckDir{檢查目錄是否存在}
     ErrNoDir[結束，顯示「目錄不存在」]
     CheckPs1{檢查有無ps1檔案}
@@ -29,21 +30,24 @@ flowchart TD
     Start --> Desc --> UserInput
     UserInput -- N --> Cancel
     UserInput -- Y --> CheckAdmin
-    
+
     CheckAdmin -- 無管理員權限 --> ShowPrompt --> Elevate --> UACConfirm
     UACConfirm -- 是 --> Restart --> CheckAdmin2
     UACConfirm -- 否 --> ElevateFail
-    
+
     CheckAdmin2 -- 仍無權限 --> ElevateFail
     CheckAdmin2 -- 已獲得權限 --> ParamCheck
-    
+
     CheckAdmin -- 已有管理員權限 --> ParamCheck
-    
-    ParamCheck --> SetDir
-    SetDir --> CheckDir
+
+    ParamCheck -- Y --> SetDir --> CheckDir
+    ParamCheck -- N --> SetCurDir --> CheckPs1
+
     CheckDir -- 不存在 --> ErrNoDir
     CheckDir -- 存在 --> CheckPs1
+
     CheckPs1 -- 無ps1檔 --> ErrNoPs1
     CheckPs1 -- 有ps1檔 --> MakeCert
+
     MakeCert --> ImportRoot --> ImportPublisher --> SignFiles --> CheckSign --> Done
 ```
