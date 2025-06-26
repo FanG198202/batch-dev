@@ -3,34 +3,34 @@
 ```mermaid
 flowchart TD
     Start([開始])
-    AdminCheck{以系統管理員執行？}
+    AdminCheck{有系統管理員權限？}
     TryElevate{提升權限成功？}
-    ArgsHelp{"第一參數為 -?"}
-    ArgsGiven{"有給參數？"}
-    DstGiven{"有給目標路徑？"}
-    UserGiven{"有給用戶名稱？"}
-    InteractiveInput[互動模式輸入來源、用戶、目標]
-    Main[進入 MAIN 流程]
-    Confirm{"使用者確認繼續？(Y/N)"}
+    ArgsHelp{"參數為 -?"}
+    ArgsGiven{"參數空白？"}
+    DstGiven{"有目標路徑？"}
+    UserGiven{"有用戶名稱？"}
+    InteractiveInput[互動模式輸入來源路徑、用戶ID、目標路徑]
+    Main[進入主流程]
+    Confirm{"確認繼續？(Y/N)"}
     SrcExist{"來源資料夾存在？"}
-    DstExist{"目標上層資料夾存在？"}
+    DstExist{"目標資料夾存在？"}
     MkdirOk{"建立目標資料夾成功？"}
     SrcSizeOk{"取得來源資料夾大小成功？"}
     DstFreeOk{"取得目標磁碟剩餘空間成功？"}
     SpaceEnough{"目標空間>=來源大小？"}
-    RobocopyError{"robocopy errorlevel>=8？"}
-    ShowUsage[顯示說明並結束]
+    RobocopyError{"robocopy執行完回傳碼>=8？"}
+    ShowUsage[顯示使用說明並結束]
     Cancel[已取消作業]
     Exit[結束]
-    ErrorAdmin[顯示「請用系統管理員」錯誤並退出]
+    ErrorAdmin[顯示「請重新用系統管理員執行」並退出]
     ErrorSrc[顯示來源不存在並退出]
     ErrorMkdir[顯示建立失敗並退出]
     ErrorSrcSize[顯示無法取得來源大小並退出]
     ErrorDstFree[顯示無法取得目標空間並退出]
     ErrorNotEnough[顯示空間不足並退出]
     RobocopyOk[備份完成]
-    RobocopyFail[robocopy 發生錯誤，檢查 log]
-    Pause[暫停]
+    RobocopyFail[robocopy 發生嚴重錯誤，檢查 log]
+    Pause[按任意鍵結束]
 
     Start --> AdminCheck
     AdminCheck -- 是 --> ArgsHelp
