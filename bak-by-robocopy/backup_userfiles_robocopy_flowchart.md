@@ -35,7 +35,7 @@ flowchart TD
     Start --> AdminCheck
     AdminCheck -- 是 --> ArgsHelp
     AdminCheck -- 否 --> TryElevate
-    TryElevate -- 是 --> Exit
+    TryElevate -- 是 --> ArgsHelp
     TryElevate -- 否 --> ErrorAdmin
     ErrorAdmin --> Pause --> Exit
 
