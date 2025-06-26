@@ -42,7 +42,7 @@
 
 下圖為腳本成功執行並產生 CSV 檔案的顯示畫面截圖：
 
-![程序運行完成說明截圖](/pic/v0.5_success.png)
+![程序運行完成說明截圖](/batch-dev/powershell-batch/pic/v0.5_success.png)
 
 ---
 
